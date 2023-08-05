@@ -13,3 +13,12 @@ SECTIONS {
         KEEP(*(.boot2));
     } > BOOT2
 } INSERT BEFORE .text;
+
+SECTIONS {
+    /* ### Function located in SRAM */
+    .ram_func : ALIGN(4)
+    {
+        . = ALIGN(4);
+        *(.ram_func.*);
+    } > RAM AT>FLASH
+} INSERT AFTER .data;
